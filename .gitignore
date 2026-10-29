@@ -1,2 +1,4 @@
 __pycache__/
 *.py[cod]
+/start_demo.sh
+/start_hosts.txt

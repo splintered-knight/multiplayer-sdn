@@ -2,6 +2,7 @@ import socket
 import time
 import json
 from pathlib import Path
+import os
 
 HOST = "10.0.0.1"
 PORT = 5000
@@ -82,8 +83,12 @@ def save_state():
         "updated_at": time.time()
     }
 
-    with open(STATE_FILE, "w") as file:
+    temp_file = STATE_FILE.with_suffix(".tmp")
+
+    with open(temp_file, "w") as file:
         json.dump(state, file)
+
+    os.replace(temp_file, STATE_FILE)
 
 
 print("UDP Game Server started")
