@@ -85,7 +85,6 @@ class GameController(app_manager.OSKenApp):
 
         ip = pkt.get_protocol(ipv4.ipv4)
         udp_pkt = pkt.get_protocol(udp.udp)
-        tcp_pkt = pkt.get_protocol(tcp.tcp)
 
         if out_port == ofproto.OFPP_FLOOD:
             actions = [
@@ -117,17 +116,6 @@ class GameController(app_manager.OSKenApp):
                     priority = 100
                     queue_id = GAME_QUEUE
 
-            # Match TCP traffic using its IP addresses and TCP ports.
-            elif ip and tcp_pkt:
-                match = parser.OFPMatch(
-                    in_port=in_port,
-                    eth_type=0x0800,
-                    ip_proto=6,
-                    ipv4_src=ip.src,
-                    ipv4_dst=ip.dst,
-                    tcp_src=tcp_pkt.src_port,
-                    tcp_dst=tcp_pkt.dst_port
-                )
 
             # Match other IPv4 traffic by IP protocol and addresses.
             elif ip:
@@ -181,5 +169,3 @@ class GameController(app_manager.OSKenApp):
             actions=actions,
             data=data
         ))
-
- 
