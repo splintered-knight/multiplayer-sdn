@@ -213,7 +213,6 @@ while True:
         )
 
     game_state = str(players)
-    for player in addresses:
-        server.sendto(game_state.encode(), addresses[player])
+    server.sendto(game_state.encode(), address)
 
     print("Game state sent to", len(addresses), "player(s)")
