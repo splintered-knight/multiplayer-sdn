@@ -1,0 +1,4 @@
+h1 python3 /home/bhargav/multiplayer-sdn/server.py > /tmp/server.log 2>&1 &
+sh sleep 1
+h2 python3 /home/bhargav/multiplayer-sdn/client.py > /tmp/client1.log 2>&1 &
+h3 python3 /home/bhargav/multiplayer-sdn/client2.py > /tmp/client2.log 2>&1 &
